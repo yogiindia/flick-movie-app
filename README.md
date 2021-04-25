@@ -1,2 +1,2 @@
-# Svelte TailwindCss boilerplate
-Simple setup to start with sveltejs and tailwindcss.
+# Flick Movie App
+A movie app built with svelte and tailwind css.
