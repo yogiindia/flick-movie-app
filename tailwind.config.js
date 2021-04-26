@@ -11,7 +11,15 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        lime: {         
+          "200": 'rgb(127,218,86,1)',
+          "400": 'rgba(46,153,46,1)'
+        }
+      }
+    },
+  
   },
   variants: {
     extend: {},

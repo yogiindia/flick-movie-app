@@ -23,5 +23,9 @@
         </span>
     </div>
     
-    <input  class="text-xl text-gray-400 py-3 px-1  ml-2 focus:outline-none w-full" type="search" placeholder={placeholder}/>
+    <input 
+        class="text-xl text-gray-400 py-3 px-1  ml-2 focus:outline-none w-full" 
+        type="search" 
+        placeholder={placeholder}
+    />
 </div>

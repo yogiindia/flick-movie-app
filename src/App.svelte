@@ -1,14 +1,8 @@
 <script>
-import Header from './components/Header.svelte';
-import Sidebar from './components/Sidebar.svelte';
+import Layout from './components/Layout.svelte';
 </script>
 
-<main>
-	<Header/>
-	<div class="flex">
-		<Sidebar/>
-	</div>
-</main>
+<Layout/>
 
 
 <style global type="text/postcss">
