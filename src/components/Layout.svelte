@@ -9,7 +9,7 @@ import Sidebar from './Sidebar.svelte';
     <Header/>
     <div class="flex">
         <Sidebar/>
-        <div class="ml-0 md:ml-44 w-full">
+        <div class="ml-0 md:ml-44 w-full pb-24">
             <GenereList/>
             <CardList/>
         </div>

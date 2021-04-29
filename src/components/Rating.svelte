@@ -1,13 +1,13 @@
 <script>
     import {onMount} from 'svelte';
 	
-    export let value;
+    export let value = 0.0;
     export let size = 70;
     export let strokeWidth = 1;
     export let innerStroke = `rgba(0,0,0,.5)`;
     export let outerStroke = `rgb(0,0,0)`;
     export let fontSize = '10px';
-    export let color = '#000';
+    export let color = outerStroke;
    
     $: {
         console.log(radius)
