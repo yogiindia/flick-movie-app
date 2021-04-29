@@ -1,45 +1,35 @@
 <script>
+import {onMount,onDestroy} from 'svelte'
+
+import store from '../store';
 import GenreItem from './GenreItem.svelte';
-import {Action,Adventure,Animation,Comedy,Romance,SciFi,Thriller,Western,Horror,Fantasy,Drama,Documentary} from './SvgIcons'
+import {getMovieGenres,getSvgIcon} from '../helper'
+
+const genres = getMovieGenres();
+let selected = $store.genre;
+let unsubscribe;
+
+onMount(()=>{
+    unsubscribe = store.subscribe(({genre})=>{
+        selected = genre
+    })
+})
+
+
+onDestroy(()=>{
+    unsubscribe()
+})
+
+
+
 </script>
 
 <div class="border-b border-gray-200 broder-top pt-28">
     <ul class="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-12 gap-4 justify-items-center px-6 py-2 mx-auto w-full text-center">        
-        <GenreItem title="action">
-            <Action/>
-        </GenreItem>
-        <GenreItem title="adventure">
-            <Adventure/>
-        </GenreItem>
-        <GenreItem title="animation">
-            <Animation/>
-        </GenreItem>
-        <GenreItem title="comedy">
-            <Comedy/>
-        </GenreItem>
-        <GenreItem title="documentary">
-            <Documentary/>
-        </GenreItem>
-        <GenreItem title="drama">
-            <Drama/>
-        </GenreItem>
-        <GenreItem title="fantasy">
-            <Fantasy/>
-        </GenreItem>
-        <GenreItem title="horror">
-            <Horror/>
-        </GenreItem>
-        <GenreItem title="romance">
-            <Romance/>
-        </GenreItem>
-        <GenreItem title="sci & fic">
-            <SciFi/>
-        </GenreItem>
-        <GenreItem title="thriller">
-            <Thriller/>
-        </GenreItem>
-        <GenreItem title="western">
-            <Western/>
-        </GenreItem>
+        {#each genres as {title,id} (id)}
+            <GenreItem {title} active={selected === id} on:selected={()=>store.updateStore({type:"genre",payload:id})}>
+                <svelte:component this = {getSvgIcon(title)}/>
+            </GenreItem>
+        {/each}
     </ul>
 </div>

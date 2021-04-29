@@ -1,24 +1,34 @@
 <script>
+    import {onMount,onDestroy} from 'svelte'
     import Icon from 'fa-svelte'
     import {faTv,faFilm, faPlayCircle, faTicketAlt, faClock} from '@fortawesome/free-solid-svg-icons'
     import SidebarItem from './SidebarItem.svelte';
+    import {categories} from '../helper'
+    import store from '../store'
+
+    let unsubscribe;
+    let selected = $store.category;
+
+    onMount(()=>{
+        unsubscribe = store.subscribe(({category})=>{
+            selected = category
+        })
+    })
+
+    onDestroy(()=>{
+        unsubscribe()
+    })
+
+    function onSelected(id) {
+        store.updateStore({type:"category",payload:id})
+    }
+
 </script>
 
 <div class="fixed h-screen border-r pt-28 hidden md:block">
-    <!-- sidebar -->
-    <SidebarItem title = "tv series">
-        <Icon icon={faTv}/>
-    </SidebarItem>
-    <SidebarItem title = "movies">
-        <Icon icon={faFilm}/>
-    </SidebarItem>
-    <SidebarItem title = "playlists">
-        <Icon icon={faPlayCircle}/>
-    </SidebarItem>
-    <SidebarItem title = "new arrivals">
-        <Icon icon={faTicketAlt}/>
-    </SidebarItem>
-    <SidebarItem title = "coming soon">
-        <Icon icon={faClock}/>
-    </SidebarItem>
+    {#each categories as {id,icon,title} (id)}
+        <SidebarItem {title} active={selected === id} on:selected={()=>onSelected(id)} >
+            <Icon {icon} />
+        </SidebarItem>
+    {/each}
 </div>
