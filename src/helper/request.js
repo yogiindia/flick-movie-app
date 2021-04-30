@@ -25,11 +25,12 @@ export const searchMovie = (search_text)=>{
 
 
 
-export const getMoviesByGenres = (id)=>{
-    return Client.get("/search/movie/",{
+export const getMoviesByGenres = (id,page=1)=>{
+    return Client.get("/discover/movie/",{
         params :{
-            query:search_text,
-            language: "en-US"
+            with_genres:id,            
+            language: "en-US",
+            page
         }
     })
 }

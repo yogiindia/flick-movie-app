@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { getMoviesByGenres } from '../helper/request';
 
 let category = 1;
 let genre = 28;
@@ -19,9 +20,19 @@ const updateStore = ({type,payload}) => {
     }
 }
 
+const fetchData = async (category,genre) => {
+    store.update((data)=>({...data,loading:true}))
+    const response = await getMoviesByGenres(genre);
+    if(response?.data?.results){
+        store.update((data)=>({...data,items:response.data.results,loading:false}))
+    }
+}
+
+
 
 export default {
     subscribe : store.subscribe,
     updateStore,
+    fetchData,
 };
 

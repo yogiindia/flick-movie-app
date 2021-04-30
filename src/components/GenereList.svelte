@@ -1,26 +1,11 @@
 <script>
-import {onMount,onDestroy} from 'svelte'
-
 import store from '../store';
 import GenreItem from './GenreItem.svelte';
 import {getMovieGenres,getSvgIcon} from '../helper'
 
 const genres = getMovieGenres();
-let selected = $store.genre;
-let unsubscribe;
 
-onMount(()=>{
-    unsubscribe = store.subscribe(({genre})=>{
-        selected = genre
-    })
-})
-
-
-onDestroy(()=>{
-    unsubscribe()
-})
-
-
+$: selected = $store.genre;
 
 </script>
 

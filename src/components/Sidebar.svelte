@@ -1,23 +1,10 @@
 <script>
-    import {onMount,onDestroy} from 'svelte'
     import Icon from 'fa-svelte'
-    import {faTv,faFilm, faPlayCircle, faTicketAlt, faClock} from '@fortawesome/free-solid-svg-icons'
     import SidebarItem from './SidebarItem.svelte';
     import {categories} from '../helper/util'
     import store from '../store'
 
-    let unsubscribe;
-    let selected = $store.category;
-
-    onMount(()=>{
-        unsubscribe = store.subscribe(({category})=>{
-            selected = category
-        })
-    })
-
-    onDestroy(()=>{
-        unsubscribe()
-    })
+    $:selected = $store.category;
 
     function onSelected(id) {
         store.updateStore({type:"category",payload:id})

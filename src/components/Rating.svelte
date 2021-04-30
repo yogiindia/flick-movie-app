@@ -37,7 +37,7 @@
         r={radius}
         cx={origin}
         cy={origin}/>
-    <text x="50%" y="50%" fill={color} text-anchor="middle" dy=".3em" font-size={fontSize} font-weight="bold" font-family="'Montserrat', sans-serif">{value}</text>
+    <text x="50%" y="50%" fill={color} text-anchor="middle" dy=".3em" font-size={fontSize} font-weight="bold" font-family="'Montserrat', sans-serif">{value.toFixed(1)}</text>
 </svg>
 
 <style>

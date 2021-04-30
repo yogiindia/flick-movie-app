@@ -1,6 +1,8 @@
 {
     "[svelte]": {
         "editor.defaultFormatter": "svelte.svelte-vscode"
-      },
-      "debug.allowBreakpointsEverywhere": true,
+    },
+    "debug.allowBreakpointsEverywhere": true,
+    "editor.fontFamily": "Fira code",
+    "editor.fontLigatures": true,
 }
