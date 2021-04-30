@@ -23,58 +23,7 @@ export const searchMovie = (search_text)=>{
     })
 }
 
-export const getMovieGenres = ()=>{
-    return [
-        {
-            "id": 28,
-            "title": "Action"
-        },
-        {
-            "id": 12,
-            "title": "Adventure"
-        },
-        {
-            "id": 16,
-            "title": "Animation"
-        },
-        {
-            "id": 35,
-            "title": "Comedy"
-        },
-        {
-            "id": 99,
-            "title": "Documentary"
-        },
-        {
-            "id": 18,
-            "title": "Drama"
-        },
-        {
-            "id": 14,
-            "title": "Fantasy"
-        },
-        {
-            "id": 27,
-            "title": "Horror"
-        },
-        {
-            "id": 10749,
-            "title": "Romance"
-        },
-        {
-            "id": 878,
-            "title": "Science Fiction"
-        },
-        {
-            "id": 53,
-            "title": "Thriller"
-        },
-        {
-            "id": 37,
-            "title": "Western"
-        }
-    ]
-}
+
 
 export const getMoviesByGenres = (id)=>{
     return Client.get("/search/movie/",{

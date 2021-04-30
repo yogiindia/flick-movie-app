@@ -3,7 +3,7 @@
     import Icon from 'fa-svelte'
     import {faTv,faFilm, faPlayCircle, faTicketAlt, faClock} from '@fortawesome/free-solid-svg-icons'
     import SidebarItem from './SidebarItem.svelte';
-    import {categories} from '../helper'
+    import {categories} from '../helper/util'
     import store from '../store'
 
     let unsubscribe;

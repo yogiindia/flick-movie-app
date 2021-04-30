@@ -2,4 +2,5 @@
     "[svelte]": {
         "editor.defaultFormatter": "svelte.svelte-vscode"
       },
+      "debug.allowBreakpointsEverywhere": true,
 }
