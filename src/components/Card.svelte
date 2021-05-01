@@ -1,5 +1,6 @@
 <script>
     import Rating from './Rating.svelte'
+    import LazyImage from './LazyImage.svelte'
 
     export let rating = "0";
     export let title = "";
@@ -8,8 +9,8 @@
 
 
 <div class="border border-gray-200 shadow-md h-full">
-    <div class="">
-        <img src={imageSrc} alt="" class="w-full">
+    <div class="w-full">
+        <LazyImage src={imageSrc}/>
     </div>
     <div class="px-5 py-4 flex justify-between">
         <h3 class="text-gray-800 text-sm capitalize self-center hover:text-lime-400" style="font-family: 'Montserrat', sans-serif;">{title}</h3>
