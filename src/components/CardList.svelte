@@ -1,8 +1,8 @@
 <script>
-    import {onMount,onDestroy} from 'svelte'
     import Card from './Card.svelte'
     import store from '../store'
-    import { getGenreById, getMoviesByGenres } from '../helper';
+    import { getGenreById } from '../helper';
+    import Pagination from './Pagination.svelte'
     import Skeleton from './Skeleton.svelte';
 
     let base_url = `https://image.tmdb.org/t/p/w500/`;
@@ -43,4 +43,5 @@
             {/if}
         </ul>
     </div>
+    <Pagination totalPages=1000 />
 </div>
