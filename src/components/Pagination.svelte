@@ -5,36 +5,42 @@
     import {paginate} from '../helper'
     
     
-    export let totalPages = 1;
+    export let totalItems = 1;
     export let pageSize = 20;
     export let maxPage = 5;
-
-    let activePage = 1;
-    let showPages = paginate(totalPages,activePage,pageSize,maxPage).pages;
+    export let activePage = 1;
     
+    let pages = []
+    let lastPage = -1;
+    
+    $: {
+        const result = paginate(totalItems,activePage,pageSize,maxPage); 
+        activePage = result.currentPage;
+        pages = result.pages;
+        lastPage = result.totalPages
+        console.log(result)
+        dispatch("pageSelected",activePage)
+    }
 
     const dispatch = createEventDispatcher()
 
     function onPageClick(page) {
-        const {pages,currentPage} = paginate(totalPages,page,pageSize,maxPage);
-        showPages = pages;
-        activePage = currentPage;
-        dispatch("pageSelected",activePage)
+        activePage =page;        
     }
 
 </script>
 
 <div class="flex justify-center items-center my-10">
-    <div class="page icon" on:click={()=>onPageClick(activePage-1)}>
+    <div class="page icon" on:click={()=>onPageClick(activePage-1)} class:disabled={activePage === 1} >
         <Icon icon={faAngleLeft}/>
     </div>
 
-    {#each showPages as page (page)}
+    {#each pages as page (page)}
         <div class="page" class:active={page==activePage} on:click={()=>onPageClick(page)}>{page}</div>
     {/each}
     
-    <div class="page icon" on:click={()=>onPageClick(activePage+1)}>
-        <Icon icon={faAngleRight}/>
+    <div class="page icon" on:click={()=>onPageClick(activePage+1)} class:disabled={activePage === lastPage}>
+        <Icon icon={faAngleRight} />
     </div>
 </div>
 
@@ -45,6 +51,10 @@
 
     .active {
        @apply bg-lime-400 text-white border-none cursor-default hover:bg-lime-400;
+    }
+
+    .disabled {
+        @apply text-gray-200 hover:text-gray-200 cursor-not-allowed !important;
     }
 
     .icon {

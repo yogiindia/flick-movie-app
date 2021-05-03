@@ -6,15 +6,19 @@
     import Skeleton from './Skeleton.svelte';
 
     let base_url = `https://image.tmdb.org/t/p/w500/`;
+
+    let page = 1;
     
     $: category = $store.category;
     $: genre = $store.genre;
     $: items = $store.items;
     $: loading = $store.loading;
+    $: page = $store.page;
     $: title = getGenreById(genre).title
 
     $: {
-        store.fetchData(category,genre)
+        store.fetchData(category,genre,page);
+        console.log(category,genre,page)
     }
 
 </script>
@@ -43,5 +47,8 @@
             {/if}
         </ul>
     </div>
-    <Pagination totalPages=1000 />
+    <Pagination 
+        totalItems={1000}
+        activePage = {page} 
+        on:pageSelected={(event)=>store.updateStore({type:"page",payload:event.detail})}/>
 </div>
