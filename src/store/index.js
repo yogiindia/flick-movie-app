@@ -6,8 +6,9 @@ let genre = 28;
 let items = [];
 let loading = false;
 let page = 1;
+let total_items = -1
 
-const store = writable({category,items,genre,loading,page});
+const store = writable({category,items,genre,loading,page,total_items});
 const updateStore = ({type,payload}) => {
     switch(type){
         case 'category':{
@@ -29,8 +30,14 @@ const updateStore = ({type,payload}) => {
 const fetchData = async (category,genre,page=1) => {
     store.update((data)=>({...data,loading:true}))
     const response = await getMoviesByGenres(genre,page);
+    console.log(response.data)
     if(response?.data?.results){
-        store.update((data)=>({...data,items:response.data.results,loading:false}))
+        store.update((data)=>({
+            ...data,
+            items:response.data.results,
+            loading:false,
+            total_items:response.data.total_results
+        }))
     }
 }
 

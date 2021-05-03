@@ -15,6 +15,7 @@
     $: loading = $store.loading;
     $: page = $store.page;
     $: title = getGenreById(genre).title
+    $: totalItems = $store.total_items
 
     $: {
         store.fetchData(category,genre,page);
@@ -48,7 +49,7 @@
         </ul>
     </div>
     <Pagination 
-        totalItems={1000}
+        {totalItems}
         activePage = {page} 
         on:pageSelected={(event)=>store.updateStore({type:"page",payload:event.detail})}/>
 </div>
